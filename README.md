@@ -1,19 +1,34 @@
-# README
+# AheadLib-CMake
 
-## About
+使用 wails 开发，在其它AheadLib工具使用不顺手的情况下，根据自己实际需要而产生的工具。
 
-This is the official Wails React-TS template.
+## 说明
 
-You can configure the project by editing `wails.json`. More information about the project settings can be found
-here: https://wails.io/docs/reference/project-config
+1. 打开程序
+2. 选择目标文件`A.dll`和输出目录
+3. 筛选函数名，选择是否需要使用“函数转发”
+4. 点击生成项目
+5. 编译项目，生成`A.dll`
+6. 将原来的`A.dll`文件改名为`A.original.dll`
+7. 将生成的`A.dll`放置于`A.original.dll`同目录下
 
-## Live Development
+> [!TIP]
+> 没有启用“函数转发”，则直接把地址转发到`A.original.dll`；
+>
+> 启用“函数转发”，则会把地址转发到源代码中的`forward_xxx`函数；
+> 
+> 启用“函数转发”，你还需要手动修正每个函数对应`ExampleFunction_t`的参数以及返回值定义。
 
-To run in live development mode, run `wails dev` in the project directory. This will run a Vite development
-server that will provide very fast hot reload of your frontend changes. If you want to develop in a browser
-and have access to your Go methods, there is also a dev server that runs on http://localhost:34115. Connect
-to this in your browser, and you can call your Go code from devtools.
+## 截图示例
 
-## Building
+![UI](./docs/pic/ui.png)
 
-To build a redistributable, production mode package, use `wails build`.
+![example](./docs/pic/example-qqnt.png)
+
+![cmake](./docs/pic/cmake.png)
+
+## 相关项目
+
+https://github.com/strivexjun/AheadLib-x86-x64
+
+https://github.com/bodong1987/AHeadLib.Net
