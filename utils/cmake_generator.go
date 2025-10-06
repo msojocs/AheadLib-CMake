@@ -134,6 +134,7 @@ func (c *CmakeProjectGenerator) generateSourceFile(outputDir string) error {
     std::string original_name = std::string(name) + ".original.dll";
     HMODULE h = GetModuleHandleA(original_name.c_str());
     if (!h) {
+        printf("Failed to get handle for %s\n", original_name.c_str());
         return nullptr;
     }
     return GetProcAddress(h, func);
@@ -149,9 +150,10 @@ func (c *CmakeProjectGenerator) generateSourceFile(outputDir string) error {
         printf("[QQNT] Forwarding %s\n", __FUNCTION__);
 
         // Look up the symbol by name
-        FARPROC proc = GetOriginalFunction("QQNT", "forward_` + name + `");
+        FARPROC proc = GetOriginalFunction("QQNT", "` + exp.Name + `");
         if (!proc) {
             // symbol not found
+            printf("Symbol not found: %s\n", "` + exp.Name + `");
             return;
         }
 
@@ -164,7 +166,7 @@ func (c *CmakeProjectGenerator) generateSourceFile(outputDir string) error {
     }`
 			}
 		}
-		str += "}\n"
+		str += "\n}\n"
 	}
 	str += "BOOL APIENTRY DllMain(HMODULE hModule,\n"
 	str += "                      DWORD  ul_reason_for_call,\n"

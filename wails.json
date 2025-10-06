@@ -9,5 +9,8 @@
   "author": {
     "name": "msojocs",
     "email": "jiyecafe@gmail.com"
+  },
+  "info": {
+    "productVersion": "1.0.1"
   }
 }
